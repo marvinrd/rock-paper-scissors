@@ -10,7 +10,11 @@ function getComputerChoice() {
   }
 }
 
+let playerSelection = "Rock";
+
 function playRound(playerSelection, computerSelection) {
+    
+
   if (computerSelection === playerSelection) {
     return "Draw! Play again!";
   } else if (
@@ -27,7 +31,9 @@ function playRound(playerSelection, computerSelection) {
     return "Player wins!";
   } else {
     return "error scenario";
-  }
+  };
+
+  
 
   // Include case insensitive
   // Include player input?
