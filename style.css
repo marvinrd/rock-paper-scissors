@@ -1,5 +1,8 @@
 body {
-    background-color: black;
-    color: white;
-    text-align: center;
+  background-color: black;
+}
+
+p {
+  color: white;
+  text-align: center;
 }
