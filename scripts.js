@@ -1,8 +1,9 @@
 // references to html elements
 const resultsContainer = document.querySelector(".resultContainer");
-const totalContainer = document.querySelector(".total");
+const totalContainer = document.querySelector(".resultHeader");
 const playOnce = document.querySelectorAll(".playSelect");
 const resetGame = document.querySelector("#resetGame");
+const gameFooter = document.querySelector(".gameFooter");
 
 //Initialize default values
 let playerSelection = "sciSSorS";
@@ -17,11 +18,12 @@ resetGame.addEventListener("click", function () {
   gameRounds = 0;
   playerScore = 0;
   computerScore = 0;
+  gameFooter.textContent = ``;
+  gameFooter.setAttribute("class", "gameFooter");
 
   const toRemove = document.querySelectorAll(".points");
   toRemove.forEach(function (node) {
     node.remove();
-
     totalContainer.textContent = `Click to Rock, Paper or Scissors to start the game`;
   });
 });
@@ -41,6 +43,21 @@ const appendToParent = function (string, parent) {
   div.textContent = string;
 };
 
+//function for game end
+const gameEnd = function () {
+  if (playerScore > computerScore && gameRounds == maxRounds) {
+    gameFooter.textContent = `You Win! Player: ${playerScore} vs. Computer ${computerScore} in ${gameRounds} Rounds`;
+    gameFooter.setAttribute("class", "win");
+  } else if (playerScore < computerScore && gameRounds == maxRounds) {
+    gameFooter.textContent = `You Lose! Player: ${playerScore} vs. Computer ${computerScore} in ${gameRounds} Rounds`;
+    gameFooter.setAttribute("class", "lose");
+  } else if (gameRounds == maxRounds) {
+    gameFooter.textContent = `Game complete with no winner! Player: ${playerScore} vs. Computer ${computerScore} in ${gameRounds} Rounds`;
+    gameFooter.setAttribute("class", "draw");
+  }
+  return;
+};
+
 //Function to generate computer choice
 function getComputerChoice() {
   let calcProbability = Math.random() * 100;
@@ -56,10 +73,10 @@ function getComputerChoice() {
 //Function to play a round of RPS
 function playRound(playerSelection, computerSelection) {
   //Capitalize player input
-  gameRounds++;
-  if (gameRounds == maxRounds + 1) {
+  if (gameRounds == maxRounds) {
     totalContainer.textContent = `Maximum rounds of ${maxRounds} reached, please click 'Reset Game' to start another set of ${maxRounds}`;
-  } else if (gameRounds < maxRounds + 1) {
+  } else if (gameRounds < maxRounds) {
+    gameRounds = gameRounds + 1;
     playerSelection =
       playerSelection.charAt(0).toUpperCase() +
       playerSelection.slice(1).toLowerCase();
@@ -72,6 +89,7 @@ function playRound(playerSelection, computerSelection) {
         resultsContainer
       );
       totalContainer.textContent = `Round ${gameRounds} - Player: ${playerScore} vs. Computer: ${computerScore}`;
+      gameEnd();
       return "Draw! Play again!";
     }
     //Return result for Win scenario
@@ -86,6 +104,7 @@ function playRound(playerSelection, computerSelection) {
       );
       playerScore++;
       totalContainer.textContent = `Round ${gameRounds} - Player: ${playerScore} vs. Computer: ${computerScore}`;
+      gameEnd();
       return `You Win! ${playerSelection} beats ${computerSelection}`;
     }
     //Return result for Lose scenario
@@ -100,27 +119,13 @@ function playRound(playerSelection, computerSelection) {
       );
       computerScore++;
       totalContainer.textContent = `Round ${gameRounds} - Player: ${playerScore} vs. Computer: ${computerScore}`;
+      gameEnd();
       return `You Lose! ${computerSelection} beats ${playerSelection}`;
     }
     //Return result for error scenario
     else {
+      gameEnd();
       return "error scenario";
     }
-  }
-  if (playerScore > computerScore) {
-    appendToParent(
-      `You Win! Player: ${playerScore} vs. Computer ${computerScore} in ${gameRounds} Rounds`,
-      resultsContainer
-    );
-  } else if (playerScore < computerScore) {
-    appendToParent(
-      `You Lose! Player: ${playerScore} vs. Computer ${computerScore} in ${gameRounds} Rounds`,
-      resultsContainer
-    );
-  } else {
-    appendToParent(
-      `Game complete with no winner! Player: ${playerScore} vs. Computer ${computerScore} in ${gameRounds} Rounds`,
-      resultsContainer
-    );
   }
 }

@@ -1,5 +1,9 @@
 body {
-  background-color: gray;
+  background-color: black;
+}
+
+div {
+  color: white;
 }
 
 p {
@@ -22,3 +26,30 @@ p {
   justify-content: center;
   gap: 16px;
 }
+
+.gameFooter {
+  text-align: center;
+  font-size: large;
+  margin: 16px;
+}
+
+/* condidionals */
+
+.lose {
+  background-color: red;
+  text-align: center;
+  color: black;
+}
+
+.win {
+  background-color:  green;
+  text-align: center;
+  color: black;
+}
+
+.draw {
+  background-color:  rgb(128, 128, 128);
+  text-align: center;
+  color: black;
+}
+
