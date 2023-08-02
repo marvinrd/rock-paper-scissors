@@ -1,6 +1,6 @@
 // references to html elements
 const resultsContainer = document.querySelector(".resultContainer");
-const totalContainer = document.querySelector(".resultHeader");
+const resultHeader = document.querySelector(".resultHeader");
 const playOnce = document.querySelectorAll(".playSelect");
 const resetGame = document.querySelector("#resetGame");
 const gameFooter = document.querySelector(".gameFooter");
@@ -12,6 +12,7 @@ let gameRounds = 0;
 let playerScore = 0;
 let computerScore = 0;
 let maxRounds = 5;
+gameFooter.textContent = `Maximum rounds set to ${maxRounds}`;
 
 //reset game listener
 resetGame.addEventListener("click", function () {
@@ -24,7 +25,7 @@ resetGame.addEventListener("click", function () {
   const toRemove = document.querySelectorAll(".points");
   toRemove.forEach(function (node) {
     node.remove();
-    totalContainer.textContent = `Click to Rock, Paper or Scissors to start the game`;
+    resultHeader.textContent = `Click to Rock, Paper or Scissors to start the game`;
   });
 });
 
@@ -74,7 +75,7 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
   //Capitalize player input
   if (gameRounds == maxRounds) {
-    totalContainer.textContent = `Maximum rounds of ${maxRounds} reached, please click 'Reset Game' to start another set of ${maxRounds}`;
+    resultHeader.textContent = `Maximum rounds of ${maxRounds} reached, please click 'Reset Game' to start another set of ${maxRounds}`;
   } else if (gameRounds < maxRounds) {
     gameRounds = gameRounds + 1;
     playerSelection =
@@ -85,10 +86,10 @@ function playRound(playerSelection, computerSelection) {
     //Return result for Draw scenario
     if (computerSelection === playerSelection) {
       appendToParent(
-        `Draw! Both ${playerSelection} vs ${computerSelection}`,
+        `Draw! Both played ${playerSelection}`,
         resultsContainer
       );
-      totalContainer.textContent = `Round ${gameRounds} - Player: ${playerScore} vs. Computer: ${computerScore}`;
+      resultHeader.textContent = `Round ${gameRounds} - Player: ${playerScore} vs. Computer: ${computerScore}`;
       gameEnd();
       return "Draw! Play again!";
     }
@@ -103,7 +104,7 @@ function playRound(playerSelection, computerSelection) {
         resultsContainer
       );
       playerScore++;
-      totalContainer.textContent = `Round ${gameRounds} - Player: ${playerScore} vs. Computer: ${computerScore}`;
+      resultHeader.textContent = `Round ${gameRounds} - Player: ${playerScore} vs. Computer: ${computerScore}`;
       gameEnd();
       return `You Win! ${playerSelection} beats ${computerSelection}`;
     }
@@ -118,7 +119,7 @@ function playRound(playerSelection, computerSelection) {
         resultsContainer
       );
       computerScore++;
-      totalContainer.textContent = `Round ${gameRounds} - Player: ${playerScore} vs. Computer: ${computerScore}`;
+      resultHeader.textContent = `Round ${gameRounds} - Player: ${playerScore} vs. Computer: ${computerScore}`;
       gameEnd();
       return `You Lose! ${computerSelection} beats ${playerSelection}`;
     }

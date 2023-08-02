@@ -1,5 +1,6 @@
 body {
   background-color: black;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 div {
@@ -9,6 +10,8 @@ div {
 p {
   color: white;
   text-align: center;
+  font-size: larger;
+  font-weight: bolder;
 }
 
 .resultContainer {
@@ -19,37 +22,46 @@ p {
   justify-content: flex-start;
   align-items: center;
   flex-grow: 1;
+  height: 200px;
 }
 
 .buttonContainer {
   display: flex;
   justify-content: center;
   gap: 16px;
+  margin: 16px;
 }
 
 .gameFooter {
   text-align: center;
+  margin: 16px 0;
   font-size: large;
-  margin: 16px;
+  background-color: gray;
 }
 
-/* condidionals */
+/* conditionals */
 
 .lose {
   background-color: red;
   text-align: center;
   color: black;
+  font-size: large;
+  padding: 5px;
 }
 
 .win {
   background-color:  green;
   text-align: center;
   color: black;
+  font-size: large;
+  padding: 5px;
 }
 
 .draw {
   background-color:  rgb(128, 128, 128);
   text-align: center;
   color: black;
+  font-size: large;
+  padding: 5px;
 }
 
