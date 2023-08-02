@@ -6,3 +6,19 @@ p {
   color: white;
   text-align: center;
 }
+
+.resultContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 16px;
+  justify-content: flex-start;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
