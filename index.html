@@ -5,15 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="style.css" />
-    <script src="scripts.js"></script>
+    <script src="scripts.js" defer></script>
   </head>
   <body>
     <p>
-        This game can only run in the console
-        <br /><br />Please open the console and run the command below to start the game
-      <br />
-      <br />
-      <b>console.log(game())</b>
+        This game can now run via buttons
     </p>
+
+    <button id="Rock" class="playSelect">Rock</button>
+    <button id="Paper" class="playSelect">Paper</button>
+    <button id="Scissors" class="playSelect">Scissors</button>
+
+    <div class="results">
+      <div class="total"> Score is ...</div>
+    </div>
+
+    <div class="footer"></div>
+    
   </body>
 </html>

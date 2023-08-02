@@ -19,12 +19,13 @@ let computerSelection = "xyz";
 function playRound(playerSelection, computerSelection) {
   //Capitalize player input
   playerSelection =
-    playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
+    playerSelection.charAt(0).toUpperCase() +
+    playerSelection.slice(1).toLowerCase();
   //Calculate computer choice for current round
   computerSelection = getComputerChoice();
   //Return result for Draw scenario
   if (computerSelection === playerSelection) {
-    console.log(`Draw! Both ${playerSelection} vs ${computerSelection}`);
+    appendToParent(`Draw! Both ${playerSelection} vs ${computerSelection}`, resultsContainer);
     return "Draw! Play again!";
   }
   //Return result for Win scenario
@@ -33,7 +34,7 @@ function playRound(playerSelection, computerSelection) {
     (computerSelection === "Scissors" && playerSelection === "Rock") ||
     (computerSelection === "Paper" && playerSelection === "Scissors")
   ) {
-    console.log(`You Win! ${playerSelection} beats ${computerSelection}`);
+    appendToParent(`You Win! ${playerSelection} beats ${computerSelection}`,resultsContainer);
     return `You Win! ${playerSelection} beats ${computerSelection}`;
   }
   //Return result for Lose scenario
@@ -42,7 +43,7 @@ function playRound(playerSelection, computerSelection) {
     (computerSelection === "Rock" && playerSelection === "Scissors") ||
     (computerSelection === "Scissors" && playerSelection === "Paper")
   ) {
-    console.log(`You Lose! ${computerSelection} beats ${playerSelection}`);
+    appendToParent(`You Lose! ${computerSelection} beats ${playerSelection}`, resultsContainer);
     return `You Lose! ${computerSelection} beats ${playerSelection}`;
   }
   //Return result for error scenario
@@ -52,7 +53,7 @@ function playRound(playerSelection, computerSelection) {
 }
 
 //Create variable for number of rounds to play
-let gameRounds = 5;
+let gameRounds = 1;
 //Create variable for Player score
 let playerScore = 0;
 //Create variable for Computer score
@@ -74,10 +75,42 @@ function game() {
     }
 
     //Log the winner of the round
-    console.log(`Round${i+1}: Player: ${playerScore} vs. Computer ${computerScore}`);
+    console.log(
+      `Round${i + 1}: Player: ${playerScore} vs. Computer ${computerScore}`
+    );
   }
   //Return with total results and declare winner
-  if (playerScore>computerScore) {console.log(`You Win! Player: ${playerScore} vs. Computer ${computerScore} in ${gameRounds} Rounds`)}
-  else if (playerScore<computerScore) {console.log(`You Lose! Player: ${playerScore} vs. Computer ${computerScore} in ${gameRounds} Rounds`)}
-  else {console.log(`Game complete with no winner! Player: ${playerScore} vs. Computer ${computerScore} in ${gameRounds} Rounds`)}
+  if (playerScore > computerScore) {
+    console.log(
+      `You Win! Player: ${playerScore} vs. Computer ${computerScore} in ${gameRounds} Rounds`
+    );
+  } else if (playerScore < computerScore) {
+    console.log(
+      `You Lose! Player: ${playerScore} vs. Computer ${computerScore} in ${gameRounds} Rounds`
+    );
+  } else {
+    console.log(
+      `Game complete with no winner! Player: ${playerScore} vs. Computer ${computerScore} in ${gameRounds} Rounds`
+    );
+  }
 }
+
+// Select all buttons based on class playSelect
+const playOnce = document.querySelectorAll(".playSelect");
+
+// for each node in that selection
+playOnce.forEach(function (play) {
+  // apply a click-event listener that runs a function
+  play.addEventListener("click", function () {
+    playRound(play.id);
+  });
+});
+
+// select the results resultsContainer
+const resultsContainer = document.querySelector(".results");
+
+const appendToParent = function (string, parent) {
+  const div = document.createElement("div");
+  parent.appendChild(div);
+  div.textContent = string;
+};
