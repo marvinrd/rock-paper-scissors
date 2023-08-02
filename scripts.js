@@ -19,8 +19,8 @@ resetGame.addEventListener("click", function () {
   gameRounds = 0;
   playerScore = 0;
   computerScore = 0;
-  gameFooter.textContent = ``;
   gameFooter.setAttribute("class", "gameFooter");
+  gameFooter.textContent = `Maximum rounds set to ${maxRounds}`;
 
   const toRemove = document.querySelectorAll(".points");
   toRemove.forEach(function (node) {
