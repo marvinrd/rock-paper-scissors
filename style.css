@@ -2,6 +2,11 @@ body {
   background-color: black;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+.byMe {
+  text-align: center;
+  font-size: small;
+  margin-top: 0;
+}
 
 div {
   color: white;
@@ -12,6 +17,7 @@ p {
   text-align: center;
   font-size: larger;
   font-weight: bolder;
+  margin-bottom: 0;
 }
 
 .resultContainer {
